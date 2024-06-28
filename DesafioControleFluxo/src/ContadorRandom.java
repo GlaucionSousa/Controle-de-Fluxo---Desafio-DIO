@@ -1,13 +1,11 @@
-import java.util.Scanner;
+import java.util.Random;
 
-public class Contador {
+public class ContadorRandom {
     public static void main(String[] args) {
-
-        Scanner terminal = new Scanner(System.in);
-        System.out.println("Digite o primeiro parâmetro:");
-        int parametroUm = terminal.nextInt();
-        System.out.println("Digite o segundo parâmetro:");
-        int parametroDois = terminal.nextInt();
+        int parametroUm = gerarNumeroAleatorio(1, 30);
+        System.out.println("O primeiro número foi: " + (gerarNumeroAleatorio(parametroUm, parametroUm)));
+        int parametroDois = gerarNumeroAleatorio(1, 30);
+        System.out.println("O Segundo número foi: " + (gerarNumeroAleatorio(parametroDois, parametroDois)));
         System.out.println();
 
         try {
@@ -18,13 +16,12 @@ public class Contador {
     }
 
     static void contar(int parametroUm, int parametroDois) throws ParametrosInvalidosException {
-
         if (parametroUm >= parametroDois) {
-            throw new ParametrosInvalidosException("O segundo parâmetro deve ser maior que o primeiro");
+            throw new ParametrosInvalidosException("O segundo parâmetro deve ser maior que o primeiro!!");
         }
 
         int contagem = parametroDois - parametroUm;
-
+        
         for (int i = parametroUm; i <= parametroDois; i++) {
             System.out.println("Imprimindo o número " + i);
         }
@@ -32,4 +29,10 @@ public class Contador {
         System.out.println();
         System.out.println("Total de números impressos: " + contagem);
     }
+
+    static int gerarNumeroAleatorio(int min, int max) {
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
+    }
+
 }
